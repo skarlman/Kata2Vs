@@ -34,7 +34,9 @@ namespace ClipboardFetcher
                 text = text.Replace("\r", "");
                 text = text.Replace(((char)8203).ToString(), "");
 
-                var lines = text.Split('\n')
+                string[] theLines = text.Split('\n');
+                txtSlug.Text = theLines.First().Substring(9).Trim().GenerateSlug();
+                var cleaned = theLines
                                 .Skip(1)
                                 .Select((l, i) => i % 2 == 1 ? l : (string)null)
                                 .Where(l => l != null);
@@ -43,7 +45,7 @@ namespace ClipboardFetcher
 
 
                 // Get the cut/copied text.
-                textBox1.Text = string.Join(Environment.NewLine, lines);
+                textBox1.Text = string.Join(Environment.NewLine, cleaned);
             }
 
             // Is the content copied of image type?
@@ -78,10 +80,7 @@ namespace ClipboardFetcher
         {
             var path = txtCodePath.Text;
 
-            var files = Directory.GetFiles(path, "Kata*.cs");
-            var nextFile = $"Kata{files.Count() + 1}.cs";
-
-            File.WriteAllText(Path.Combine(path, nextFile), textBox1.Text);
+            File.WriteAllText(Path.Combine(path, txtSlug.Text + ".cs"), textBox1.Text);
         }
     }
 }

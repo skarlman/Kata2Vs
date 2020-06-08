@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ClipboardFetcher
 {
-    public class GenerateSlug
+    public static class GenerateSlugExtensions
     {
         public static string GenerateSlug(this string phrase)
         {

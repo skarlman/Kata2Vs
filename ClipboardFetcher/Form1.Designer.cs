@@ -31,6 +31,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtCodePath = new System.Windows.Forms.TextBox();
             this.btnCreateFile = new System.Windows.Forms.Button();
+            this.txtSlug = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -59,11 +60,19 @@
             this.btnCreateFile.UseVisualStyleBackColor = true;
             this.btnCreateFile.Click += new System.EventHandler(this.btnCreateFile_Click);
             // 
+            // txtSlug
+            // 
+            this.txtSlug.Location = new System.Drawing.Point(12, 71);
+            this.txtSlug.Name = "txtSlug";
+            this.txtSlug.Size = new System.Drawing.Size(341, 20);
+            this.txtSlug.TabIndex = 3;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtSlug);
             this.Controls.Add(this.btnCreateFile);
             this.Controls.Add(this.txtCodePath);
             this.Controls.Add(this.textBox1);
@@ -80,6 +89,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox txtCodePath;
         private System.Windows.Forms.Button btnCreateFile;
+        private System.Windows.Forms.TextBox txtSlug;
     }
 }
 

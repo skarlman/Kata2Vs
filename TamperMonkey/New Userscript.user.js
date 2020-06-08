@@ -4,7 +4,7 @@
 // @version      0.1
 // @description  try to take over the world!
 // @author       You
-// @match        https://www.codewars.com/kata/515e188a311df01cba000003/train/csharp
+// @match        https://www.codewars.com/kata/*
 // @grant        none
 // ==/UserScript==
 
