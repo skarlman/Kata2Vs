@@ -30,11 +30,18 @@ document.getElementById ("myButton").addEventListener (
 
 function ButtonClickAction (zEvent) {
 
+    document.getElementById('code').getElementsByClassName('expand')[0].getElementsByTagName('a')[0].click();
+    document.getElementById('code').getElementsByClassName('shrink')[0].getElementsByTagName('a')[0].click();
+    document.getElementById('fixture').getElementsByClassName('expand')[0].getElementsByTagName('a')[0].click();
+    document.getElementById('fixture').getElementsByClassName('shrink')[0].getElementsByTagName('a')[0].click();
+
+
     var codeCont = document.getElementsByClassName('CodeMirror-code');
 
+    var title = document.getElementsByClassName('game-title')[0].getElementsByTagName('h4')[0].innerText;
 
-    navigator.clipboard.writeText("KATACODE:\n"+codeCont[0].innerText+"\n"+codeCont[1].innerText).then(function() {
-    alert('success');
+    navigator.clipboard.writeText("KATACODE:" + title + "\n"+codeCont[0].innerText+"\n"+codeCont[1].innerText).then(function() {
+
   }, function() {
     alert('fail');
   });
