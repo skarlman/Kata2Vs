@@ -31,21 +31,7 @@ namespace ClipboardFetcher
                 if (!text.StartsWith("KATACODE:"))
                     return;
 
-                text = text.Replace("\r", "");
-                text = text.Replace(((char)8203).ToString(), "");
-
-                string[] theLines = text.Split('\n');
-                txtSlug.Text = theLines.First().Substring(9).Trim().GenerateSlug();
-                var cleaned = theLines
-                                .Skip(1)
-                                .Select((l, i) => i % 2 == 1 ? l : (string)null)
-                                .Where(l => l != null);
-
-
-
-
-                // Get the cut/copied text.
-                textBox1.Text = string.Join(Environment.NewLine, cleaned);
+                ParseKata(text);
             }
 
             // Is the content copied of image type?
@@ -71,6 +57,33 @@ namespace ClipboardFetcher
                 // Do something with 'clipboard.ClipboardObject' or 'e.Content' here...
             }
         }
+
+        private void ParseKata(string text)
+        {
+            text = text.Replace("\r", "");
+            text = text.Replace(((char) 8203).ToString(), "");
+
+            string[] theLines = text.Split('\n');
+            var usings = theLines.Where(l => l.ToLower().Trim().StartsWith("using")).Distinct();
+            
+            var slug = theLines.First().Substring(9).Trim().GenerateSlug();
+            txtSlug.Text = slug;
+
+            var cleaned = theLines
+                .Skip(1)
+                .Select((l, i) => i % 2 == 1 ? l : (string) null)
+                .Where(l => l != null && !l.Trim().StartsWith("using"));
+
+            var result = string.Join(Environment.NewLine, usings) 
+                + $"{Environment.NewLine}{Environment.NewLine}namespace {slug.Replace("-", "_")}{Environment.NewLine}{{{Environment.NewLine}"
+                + string.Join(Environment.NewLine, cleaned)
+                + Environment.NewLine
+                + "}";
+
+            // Get the cut/copied text.
+            textBox1.Text = result;
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
