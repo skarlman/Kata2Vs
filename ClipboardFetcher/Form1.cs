@@ -32,6 +32,11 @@ namespace ClipboardFetcher
                     return;
 
                 ParseKata(text);
+
+                if (chkAuto.Checked)
+                {
+                    btnCreateFile.PerformClick();
+                }
             }
 
             // Is the content copied of image type?
